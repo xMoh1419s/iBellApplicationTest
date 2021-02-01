@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ibell</string>
+
+    <string-array name="اسم_الطالب">
+
+        <item>محمد عدنان محمد مليباري</item>
+        <item>عبدالرحمن</item>
+        <item>خالد</item>
+        <item>سعد</item>
+
+    </string-array>
+</resources>
