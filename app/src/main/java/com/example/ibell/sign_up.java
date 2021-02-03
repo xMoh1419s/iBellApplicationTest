@@ -20,12 +20,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class sign_up extends AppCompatActivity {
 
-    public TextView thereAccount;
-    public Button create;
+     TextView thereAccount;
+     Button create;
 
     EditText ID, Fname, Password, RePassword;
     FirebaseAuth fAuth;
     ProgressBar Rprog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,24 +36,28 @@ public class sign_up extends AppCompatActivity {
         thereAccount = findViewById(R.id.account);
         create =(Button) findViewById(R.id.signUpBtn);
 
-        ID = findViewById(R.id.IDnumber);
-        Fname = findViewById(R.id.Fname);
-        Password = findViewById(R.id.Password);
-        RePassword = findViewById(R.id.RePassword);
+        ID = findViewById(R.id.IDText);
+        Fname = findViewById(R.id.FnameText);
+        Password = findViewById(R.id.PasswordText);
+        RePassword = findViewById(R.id.RePasswordText);
         Rprog = findViewById(R.id.progressBar);
 
         fAuth = FirebaseAuth.getInstance();
 
+
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), main_screen.class));
+            fAuth.signOut();
+            //startActivity(new Intent(getApplicationContext(), main_screen.class));
             finish();
         }
+
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id = ID.getText().toString().trim();
+                String id = ID.getText().toString().trim() +"@gmail.com";
                 String  password = Password.getText().toString().trim();
+                String repassword = RePassword.getText().toString().trim();
 
                 if(TextUtils.isEmpty(id)){
                     ID.setError("لابد من ادخال رقم الهوية");
@@ -63,10 +69,21 @@ public class sign_up extends AppCompatActivity {
                     return;
                 }
 
-                if(password.length() < 8) {
+                if(password.length() <= 8) {
                     Password.setError("لابد ان تكون كلمة المرور اكثر من او تساوي 8 خانات");
                     return;
 
+                }
+
+                if(!repassword.contentEquals(password)){
+                    RePassword.setError("لا تتطابق كلمتا المرور اللتان تم إدخالهما, يُرجى إعادة المحاولة");
+                    return;
+
+                }
+
+                if(TextUtils.isEmpty(repassword)){
+                    RePassword.setError("لابد من تأكيد كلمة المرور");
+                    return;
                 }
                 create.setVisibility(View.INVISIBLE);
                 Rprog.setVisibility(View.VISIBLE);
@@ -79,8 +96,9 @@ public class sign_up extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
                         } else{
-                            Toast.makeText(sign_up.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(sign_up.this, "Error" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                             Rprog.setVisibility(View.GONE);
+                            create.setVisibility(View.VISIBLE);
                         }
                     }
                 });
@@ -96,13 +114,13 @@ public class sign_up extends AppCompatActivity {
             }
         });
 
-        create.setOnClickListener(new View.OnClickListener() {
+        /*create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(sign_up.this, MainActivity.class);
                 startActivity(intent);
 
             }
-        });
+        });*/
     }
 }
