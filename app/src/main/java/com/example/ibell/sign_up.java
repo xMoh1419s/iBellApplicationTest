@@ -17,15 +17,23 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class sign_up extends AppCompatActivity {
 
-     TextView thereAccount;
+     TextView thereAccount,txt;
      Button create;
 
     EditText ID, Fname, Password, RePassword;
     FirebaseAuth fAuth;
+    DatabaseReference reff;
     ProgressBar Rprog;
+
+
 
 
     @Override
@@ -34,6 +42,8 @@ public class sign_up extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         thereAccount = findViewById(R.id.account);
+        txt = findViewById(R.id.ourText);
+
         create =(Button) findViewById(R.id.signUpBtn);
 
         ID = findViewById(R.id.IDText);
@@ -43,16 +53,42 @@ public class sign_up extends AppCompatActivity {
         Rprog = findViewById(R.id.progressBar);
 
         fAuth = FirebaseAuth.getInstance();
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reff = FirebaseDatabase.getInstance().getReference();//.child("students").child(ID.getText().toString().trim());
+
+                reff.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String studentName = snapshot.child("students").child("1018465730").child("student_name").getValue().toString();
+                        String fatherName = snapshot.child("students").child("1018465730").child("father_name").getValue().toString();
+                        String grandName = snapshot.child("students").child("1018465730").child("grandfather_name").getValue().toString();
+                        String lastName = snapshot.child("students").child("1018465730").child("last_name").getValue().toString();
+                        String stdID = snapshot.child("students").child("1018465730").child("student_id").getValue().toString();
+                        String fathID = snapshot.child("students").child("1018465730").child("student_name").getValue().toString();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 
 
-        if(fAuth.getCurrentUser() != null){
+
+
+        /*if(fAuth.getCurrentUser() != null){
             fAuth.signOut();
             //startActivity(new Intent(getApplicationContext(), main_screen.class));
             finish();
-        }
+        }*/
 
 
-        create.setOnClickListener(new View.OnClickListener() {
+        /*create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String id = ID.getText().toString().trim() +"@gmail.com";
@@ -103,7 +139,7 @@ public class sign_up extends AppCompatActivity {
                     }
                 });
             }
-        });
+        });*/
 
         thereAccount.setOnClickListener(new View.OnClickListener() {
             @Override
