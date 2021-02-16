@@ -4,10 +4,10 @@ public class User {
 
     private String ID;
     private String Fname;
-    private String Lname;
+    private String Lname; //
     private String password;
     private Number phoneNumber;
-    private Student[] student;
+    private Student[] student; //
 
     public User(){
 

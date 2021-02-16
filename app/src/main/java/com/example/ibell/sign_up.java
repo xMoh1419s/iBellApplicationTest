@@ -33,6 +33,8 @@ public class sign_up extends AppCompatActivity {
     DatabaseReference reff;
     ProgressBar Rprog;
 
+    public static Student student;
+
 
 
 
@@ -54,27 +56,80 @@ public class sign_up extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         create.setOnClickListener(new View.OnClickListener() {
+
+
+
             @Override
             public void onClick(View v) {
-                reff = FirebaseDatabase.getInstance().getReference();//.child("students").child(ID.getText().toString().trim());
 
-                reff.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String studentName = snapshot.child("students").child("1018465730").child("student_name").getValue().toString();
-                        String fatherName = snapshot.child("students").child("1018465730").child("father_name").getValue().toString();
-                        String grandName = snapshot.child("students").child("1018465730").child("grandfather_name").getValue().toString();
-                        String lastName = snapshot.child("students").child("1018465730").child("last_name").getValue().toString();
-                        String stdID = snapshot.child("students").child("1018465730").child("student_id").getValue().toString();
-                        String fathID = snapshot.child("students").child("1018465730").child("student_name").getValue().toString();
+                String id = ID.getText().toString().trim();
+                String fatherName = Fname.getText().toString().trim();
+                String  password = Password.getText().toString().trim();
+                String repassword = RePassword.getText().toString().trim();
 
-                    }
+                if(!id.matches("(1|2).*") || id.length() != 10){
+                    ID.setError("فضلا تأكد من رقم الهوية");
+                    return;
+                }
+                if(id.isEmpty()){
+                    ID.setError("لابد من ادخال رقم الهوية");
+                    return;
+                }
+                if(fatherName.isEmpty()){
+                    Fname.setError("لابد من ادخال الاسم");
+                }
+                if(TextUtils.isEmpty(password)){
+                    Password.setError("لابد من ادخال كلمة مرور");
+                    return;
+                }
+                if(password.length() <= 8) {
+                    Password.setError("لابد ان تكون كلمة المرور اكثر من او تساوي 8 خانات");
+                    return;
+                }
+                if(!repassword.contentEquals(password)){
+                    RePassword.setError("لا تتطابق كلمتا المرور اللتان تم إدخالهما, يُرجى إعادة المحاولة");
+                    return;
+                }
+                if(TextUtils.isEmpty(repassword)){
+                    RePassword.setError("لابد من تأكيد كلمة المرور");
+                    return;
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                    reff = FirebaseDatabase.getInstance().getReference();//.child("students").child(ID.getText().toString().trim());
 
-                    }
-                });
+                    reff.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                            try {
+
+                            String studentName = snapshot.child("students").child(ID.getText().toString()).child("student_name").getValue().toString();
+                            String fatherName = snapshot.child("students").child(ID.getText().toString()).child("father_name").getValue().toString();
+                            String grandName = snapshot.child("students").child(ID.getText().toString()).child("grandfather_name").getValue().toString();
+                            String lastName = snapshot.child("students").child(ID.getText().toString()).child("last_name").getValue().toString();
+                            String stdID = snapshot.child("students").child(ID.getText().toString()).child("student_id").getValue().toString();
+                            String fatherID = snapshot.child("students").child(ID.getText().toString()).child("father_id").getValue().toString();
+
+                            student = new Student(studentName, fatherName, grandName, lastName, stdID, fatherID, "الابتدائية الاولى");
+                            //txt.setText(student.getFullName());
+                            Intent intent = new Intent(sign_up.this, main_screen.class);
+                            startActivity(intent);
+                            }catch (NullPointerException e){
+                                ID.setError("فضلا تأكد من ان رقم الهوية مسجل لدى المدرسة");
+                            }catch (Exception e){
+                                ID.setError("غلط");
+                            }
+
+                        }
+
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
             }
         });
 
