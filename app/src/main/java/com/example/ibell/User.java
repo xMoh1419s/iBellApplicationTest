@@ -1,22 +1,23 @@
 package com.example.ibell;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 public class User {
 
     private String ID;
     private String Fname;
     private String Lname; //
     private String password;
-    private Number phoneNumber;
+    private String phoneNumber;
     private Student[] student; //
 
     public User(){
 
     }
 
-    public User(String ID, String Fname, String Lname, String password, Number phoneNumber) {
+    public User(String ID, String Fname, String password, String phoneNumber) {
         this.ID = ID;
         this.Fname = Fname;
-        this.Lname = Lname;
         this.password = password;
         this.phoneNumber = phoneNumber;
     }
@@ -53,11 +54,11 @@ public class User {
         this.password = password;
     }
 
-    public Number getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Number phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -74,7 +75,9 @@ public class User {
 
     }
 
-    public void wsaltButton(){
+    public static void wsaltButton(){
+
+        FirebaseDatabase.getInstance().getReference("Leaving_student").child(sign_up.student.getS_ID()).setValue(sign_up.student);
 
 
     }

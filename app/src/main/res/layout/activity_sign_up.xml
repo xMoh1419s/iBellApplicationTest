@@ -46,7 +46,7 @@
         android:id="@+id/ourText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="156dp"
         android:text="تفعيل الحساب"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@android:color/tertiary_text_light"
@@ -59,14 +59,14 @@
         android:id="@+id/FnameText"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="352dp"
+        android:layout_marginBottom="412dp"
         android:backgroundTint="#5BCEC9"
         android:ems="10"
         android:hint="الاسم الأول"
-        android:inputType="text"
+        android:inputType="textPersonName|text|textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -88,14 +88,28 @@
         android:id="@+id/IDText"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="420dp"
+        android:layout_marginBottom="472dp"
         android:backgroundTint="#5BCEC9"
         android:ems="10"
         android:hint="رقم الهوية"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/phoneText"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="352dp"
+        android:backgroundTint="#5BCEC9"
+        android:ems="10"
+        android:hint="رقم الجوال مثال: 05XXXXXXXX"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText

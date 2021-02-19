@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,8 @@ public class main_screen extends AppCompatActivity {
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, namesList);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             names.setAdapter(adapter);
+            User.wsaltButton();
+
 
 
             btn.setOnClickListener(new View.OnClickListener() {
