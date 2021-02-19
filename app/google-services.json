@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "904637172225",
+    "project_id": "ibell-3558e",
+    "storage_bucket": "ibell-3558e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904637172225:android:8d0152575659e73cdc4e00",
+        "android_client_info": {
+          "package_name": "com.example.ibell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904637172225-435k309335so6jlgnb1i18bl507jv9ot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKtBpzOLVFWXos968ZGwFVFaGXej9D_1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904637172225-435k309335so6jlgnb1i18bl507jv9ot.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
