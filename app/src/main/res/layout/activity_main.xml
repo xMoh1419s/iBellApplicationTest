@@ -73,7 +73,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/passwordFiled"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="312dp"
@@ -87,7 +87,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/IDfeild"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="384dp"
