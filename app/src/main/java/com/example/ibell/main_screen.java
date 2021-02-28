@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -38,14 +39,15 @@ public class main_screen extends AppCompatActivity {
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, namesList);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             names.setAdapter(adapter);
-            User.wsaltButton();
+
 
 
 
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    tst.setText(sign_up.student.getFullName());
+                    Intent intent = new Intent(main_screen.this, Test.class);
+                    startActivity(intent);
 
                 }
             });
