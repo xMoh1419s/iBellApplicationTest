@@ -41,6 +41,7 @@ public class sign_up extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_sign_up);
 
         thereAccount = findViewById(R.id.account);

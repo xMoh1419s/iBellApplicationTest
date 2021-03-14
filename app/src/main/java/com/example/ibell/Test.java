@@ -74,6 +74,7 @@ public class Test extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 childPickedUp();
                 Toast.makeText(Test.this, "شكرا لك على استخدام تطبيقنا, تم ازالة اسم ابنك من الشاشة." , Toast.LENGTH_LONG).show();
+
             }
         });
         moreTime.create().show();
@@ -85,7 +86,7 @@ public class Test extends AppCompatActivity {
         timer.setText(timeLeftFormatted);
     }
     public void childPickedUp(){
-        DatabaseReference reff = FirebaseDatabase.getInstance().getReference("Leaving_student").child("1010101010");
+        DatabaseReference reff = FirebaseDatabase.getInstance().getReference("Leaving_student").child(sign_up.student.getS_ID());
         reff.removeValue();
     }
 }

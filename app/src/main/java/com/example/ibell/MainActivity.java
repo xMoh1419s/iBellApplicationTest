@@ -1,10 +1,16 @@
 package com.example.ibell;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.biometrics.BiometricPrompt;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CancellationSignal;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +25,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 public class MainActivity extends AppCompatActivity {
 
      Button login;
@@ -30,10 +39,29 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    //private BiometricPrompt biometricPrompt;
+    private CancellationSignal cancellationSignal;
+    private BiometricPrompt.AuthenticationCallback authenticationCallback;
+
+    
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Executor executor = Executors.newSingleThreadExecutor();
+        BiometricPrompt BP = new BiometricPrompt.Builder(MainActivity.this)
+                .setTitle("توثيق بالبصمة")
+                .setSubtitle("الرجاء ادخال البصمة")
+                .setNegativeButton("Cancel", executor, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).build();
+
 
         login = (Button) findViewById(R.id.signin);
         noAccount = findViewById(R.id.noAccount);
@@ -42,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
         ID = findViewById(R.id.IDfeild);
         password = findViewById(R.id.passwordFiled);
+        //executor = ContextCompat.getMainExecutor(this);
+
 
         login.setOnClickListener(new View.OnClickListener() {
 
@@ -101,9 +131,10 @@ public class MainActivity extends AppCompatActivity {
 
                                 sign_up.student = new Student(studentName, fatherName, grandName, lastName, stdID, fatherID, "الابتدائية الاولى");
 
+
                                 //txt.setText(student.getFullName());
-                                Intent intent = new Intent(MainActivity.this, main_screen.class);
-                                startActivity(intent);
+
+
 
                         }catch (NullPointerException e){
                             Toast.makeText(MainActivity.this, "فضلا تأكد من البيانات المدخلة" , Toast.LENGTH_SHORT).show();
@@ -124,7 +155,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+                BP.authenticate(new CancellationSignal(), executor, new BiometricPrompt.AuthenticationCallback() {
+                    @Override
+                    public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                        Intent intent = new Intent(MainActivity.this, main_screen.class);
+                        startActivity(intent);
+                    }
+                });
             }
+
         });
 
 
