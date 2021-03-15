@@ -88,6 +88,8 @@ public class Test extends AppCompatActivity {
     public void childPickedUp(){
         DatabaseReference reff = FirebaseDatabase.getInstance().getReference("Leaving_student").child(sign_up.student.getS_ID());
         reff.removeValue();
+
+
     }
 }
 
