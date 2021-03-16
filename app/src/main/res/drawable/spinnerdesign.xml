@@ -5,13 +5,13 @@
             android:shape="rectangle">
             <gradient
 
-                android:startColor="@color/secondblue"
+                android:startColor="@color/firstblue"
                 android:endColor="@color/firstblue"
                 android:angle="90"
-                android:type="linear"
-
-
-                />
+                android:type="linear"/>
+            <corners
+                android:radius="30dp">
+            </corners>
 
 
 
