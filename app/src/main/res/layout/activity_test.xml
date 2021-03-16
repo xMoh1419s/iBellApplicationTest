@@ -33,18 +33,17 @@
     <Button
         android:id="@+id/take"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="299dp"
-        android:layout_height="86dp"
+        android:layout_width="187dp"
+        android:layout_height="63dp"
         android:layout_marginBottom="116dp"
         android:backgroundTint="#FA9F42"
         android:fontFamily="@font/meduim"
         android:text="أخذت الولد"
         android:textColor="@color/white"
-        android:textSize="36sp"
+        android:textSize="24sp"
         app:cornerRadius="?attr/dialogPreferredPadding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.528"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button

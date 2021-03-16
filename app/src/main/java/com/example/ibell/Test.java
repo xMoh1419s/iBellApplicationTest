@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -17,7 +18,7 @@ import java.util.Locale;
 
 public class Test extends AppCompatActivity {
 
-    static final long INITIAL_TIME = 5000;
+    static final long INITIAL_TIME = 10000;
     long millis = INITIAL_TIME;
     Button timer, picked;
     CountDownTimer countdown;
@@ -37,7 +38,8 @@ public class Test extends AppCompatActivity {
         picked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseDatabase.getInstance().getReference("Leaving_student").child("1010101010").removeValue();
+                //FirebaseDatabase.getInstance().getReference("Leaving_student").child("1010101010").removeValue();
+                childPickedUp();
             }
         });
     }
@@ -73,7 +75,7 @@ public class Test extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 childPickedUp();
-                Toast.makeText(Test.this, "شكرا لك على استخدام تطبيقنا, تم ازالة اسم ابنك من الشاشة." , Toast.LENGTH_LONG).show();
+
 
             }
         });
@@ -88,7 +90,9 @@ public class Test extends AppCompatActivity {
     public void childPickedUp(){
         DatabaseReference reff = FirebaseDatabase.getInstance().getReference("Leaving_student").child(sign_up.student.getS_ID());
         reff.removeValue();
-
+        Intent intent = new Intent(Test.this, main_screen.class);
+        startActivity(intent);
+        Toast.makeText(Test.this, "شكرا لك على استخدام تطبيقنا, تم ازالة اسم ابنك من الشاشة." , Toast.LENGTH_LONG).show();
 
     }
 }
