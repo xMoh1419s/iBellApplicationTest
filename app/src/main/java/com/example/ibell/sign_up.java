@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -34,44 +35,31 @@ public class sign_up extends AppCompatActivity {
     ProgressBar Rprog;
 
     public static Student student;
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up);
-
         thereAccount = findViewById(R.id.account);
         txt = findViewById(R.id.ourText);
-
         create =(Button) findViewById(R.id.signUpBtn);
-
         ID = findViewById(R.id.IDText);
         Fname = findViewById(R.id.FnameText);
         Password = findViewById(R.id.PasswordText);
         RePassword = findViewById(R.id.RePasswordText);
         phoneNumber = findViewById(R.id.phoneText);
         Rprog = findViewById(R.id.progressBar);
-
-
         create.setOnClickListener(new View.OnClickListener() {
-
-
 
             @Override
             public void onClick(View v) {
                 create.setVisibility(View.INVISIBLE);
                 Rprog.setVisibility(View.VISIBLE);
-
                 String id = ID.getText().toString().trim();
                 String fatherName = Fname.getText().toString().trim();
                 String  password = Password.getText().toString().trim();
                 String repassword = RePassword.getText().toString().trim();
                 String phone = phoneNumber.getText().toString().trim();
-
                 if(!id.matches("(1|2).*") || id.length() != 10){
                     ID.setError("فضلا تأكد من رقم الهوية");
                     Rprog.setVisibility(View.GONE);
@@ -124,32 +112,27 @@ public class sign_up extends AppCompatActivity {
                     create.setVisibility(View.VISIBLE);
                     return;
                 }
-
                     reff = FirebaseDatabase.getInstance().getReference();//.child("students").child(ID.getText().toString().trim());
-
                     reff.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
                             try {
 
-                            String studentName = snapshot.child("students").child(ID.getText().toString()).child("student_name").getValue().toString();
-                            String fatherNamex = snapshot.child("students").child(ID.getText().toString()).child("father_name").getValue().toString();
-                            String grandName = snapshot.child("students").child(ID.getText().toString()).child("grandfather_name").getValue().toString();
-                            String lastName = snapshot.child("students").child(ID.getText().toString()).child("last_name").getValue().toString();
-                            String stdID = snapshot.child("students").child(ID.getText().toString()).child("student_id").getValue().toString();
-                            String fatherID = snapshot.child("students").child(ID.getText().toString()).child("father_id").getValue().toString();
+                                String studentName = snapshot.child("students").child(ID.getText().toString()).child("student_name").getValue().toString();
+                                String fatherNamex = snapshot.child("students").child(ID.getText().toString()).child("father_name").getValue().toString();
+                                String grandName = snapshot.child("students").child(ID.getText().toString()).child("grandfather_name").getValue().toString();
+                                String lastName = snapshot.child("students").child(ID.getText().toString()).child("last_name").getValue().toString();
+                                String stdID = snapshot.child("students").child(ID.getText().toString()).child("student_id").getValue().toString();
+                                String fatherID = snapshot.child("students").child(ID.getText().toString()).child("father_id").getValue().toString();
 
-                            student = new Student(studentName, fatherNamex, grandName, lastName, stdID, fatherID, "الابتدائية الاولى");
-                            User user = new User(id, fatherName, password, phone);
-                            FirebaseDatabase.getInstance().getReference("fatherUser").child(id+password).setValue(user);
+                                student = new Student(studentName, fatherNamex, grandName, lastName, stdID, fatherID, "الابتدائية الاولى");
+                                User user = new User(id, fatherName, password, phone);
+                                FirebaseDatabase.getInstance().getReference("fatherUser").child(id+password).setValue(user);
 
-
-
-                            //txt.setText(student.getFullName());
-                            Intent intent = new Intent(sign_up.this, main_screen.class);
-                            startActivity(intent);
+                                //txt.setText(student.getFullName());
+                                Intent intent = new Intent(sign_up.this, main_screen.class);
+                                startActivity(intent);
+                                finish();
                             }catch (NullPointerException e){
                                 ID.setError("فضلا تأكد من ان رقم الهوية مسجل لدى المدرسة");
                                 Rprog.setVisibility(View.GONE);
@@ -234,7 +217,6 @@ public class sign_up extends AppCompatActivity {
                 });
             }
         });*/
-
         thereAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -243,7 +225,6 @@ public class sign_up extends AppCompatActivity {
 
             }
         });
-
         /*create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
