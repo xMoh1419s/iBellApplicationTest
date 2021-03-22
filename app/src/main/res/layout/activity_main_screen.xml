@@ -10,17 +10,59 @@
         android:id="@+id/imageView"
         android:layout_width="160dp"
         android:layout_height="59dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/Test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:fontFamily="@font/meduim"
+        android:text="اضغط الزر لما توصل المدرسة"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#F3533B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="532dp"
+        android:fontFamily="@font/meduim"
+        android:text="اسم الطالب"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#707070"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerNames"
+        android:layout_width="316dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/spinnerdesign"
+        android:backgroundTint="#5BCEC9"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/wasalt"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_marginBottom="188dp"
+        android:layout_marginBottom="232dp"
         android:backgroundTint="#8CD77A"
         android:fontFamily="@font/regular"
         android:text="وصلت"
@@ -29,46 +71,29 @@
         app:cornerRadius="@android:dimen/thumbnail_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="580dp"
-        android:fontFamily="@font/meduim"
-        android:text="اسم الطالب"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#707070"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/Test"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/BottomNavMenu"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:fontFamily="@font/meduim"
-        android:text="اضغط الزر لما توصل المدرسة"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#F3533B"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinnerNames"
-        android:layout_width="316dp"
-        android:layout_height="24dp"
-        android:layout_marginBottom="56dp"
-        android:background="@drawable/spinnerdesign"
-        android:backgroundTint="#5BCEC9"
-        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="0dp"
+        android:background="@drawable/bottomnav_bg"
+        android:elevation="2dp"
+        app:itemIconTint="@color/firstblue"
+        app:itemTextColor="@color/firstblue"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_menu">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_above="@id/BottomNavMenu"
+            android:background="@drawable/shadow" />
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 </androidx.constraintlayout.widget.ConstraintLayout>

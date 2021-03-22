@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,7 +20,7 @@ import java.util.Locale;
 
 public class Test extends AppCompatActivity {
 
-    static final long INITIAL_TIME = 10000;
+    static final long INITIAL_TIME = 100000;
     long millis = INITIAL_TIME;
     Button timer, picked;
     CountDownTimer countdown;
@@ -35,6 +36,7 @@ public class Test extends AppCompatActivity {
         picked = findViewById(R.id.take);
         User.wsaltButton();
         startTimer();
+
         updateCountDownText();
 
         picked.setOnClickListener(new View.OnClickListener() {
@@ -97,5 +99,8 @@ public class Test extends AppCompatActivity {
         Toast.makeText(Test.this, "شكرا لك على استخدام تطبيقنا, تم ازالة اسم ابنك من الشاشة." , Toast.LENGTH_LONG).show();
 
     }
+    //public void sms(View v){
+    //    PhoneAuthProvider.getInstance().verifyPhoneNumber();
+    //}
 }
 

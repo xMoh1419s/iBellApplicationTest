@@ -135,7 +135,7 @@
         android:layout_marginBottom="116dp"
         android:backgroundTint="#8CD77A"
         android:fontFamily="sans-serif-black"
-        android:text="إنشاء حساب"
+        android:text="تفعيل الحساب"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:cornerRadius="?attr/dialogPreferredPadding"

@@ -9,4 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="firstblue">#5BCEC9</color>
     <color name="secondblue">#8CD77A</color>
+
+    <color name="homeFragment">#fe5670</color>
+    <color name="accountFragment">#fe99d3</color>
+    <color name="aboutFragment">#ffe240</color>
+
+
 </resources>

@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    private static int WELCOME = 5000;
+    private static int WELCOME = 2000;
     Animation icon, text;
     ImageView bell;
     TextView t1, t2;

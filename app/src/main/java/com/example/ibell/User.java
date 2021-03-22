@@ -81,6 +81,11 @@ public class User {
 
 
     }
+    public static String phoneNum(){
+
+        return sign_up.user.getPhoneNumber();
+    }
+
 
 
 

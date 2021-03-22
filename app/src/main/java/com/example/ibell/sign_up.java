@@ -35,6 +35,7 @@ public class sign_up extends AppCompatActivity {
     ProgressBar Rprog;
 
     public static Student student;
+    public static User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,7 @@ public class sign_up extends AppCompatActivity {
                 Rprog.setVisibility(View.VISIBLE);
                 String id = ID.getText().toString().trim();
                 String fatherName = Fname.getText().toString().trim();
-                String  password = Password.getText().toString().trim();
+                String password = Password.getText().toString().trim();
                 String repassword = RePassword.getText().toString().trim();
                 String phone = phoneNumber.getText().toString().trim();
                 if(!id.matches("(1|2).*") || id.length() != 10){
@@ -125,8 +126,9 @@ public class sign_up extends AppCompatActivity {
                                 String stdID = snapshot.child("students").child(ID.getText().toString()).child("student_id").getValue().toString();
                                 String fatherID = snapshot.child("students").child(ID.getText().toString()).child("father_id").getValue().toString();
 
+
                                 student = new Student(studentName, fatherNamex, grandName, lastName, stdID, fatherID, "الابتدائية الاولى");
-                                User user = new User(id, fatherName, password, phone);
+                                user = new User(id, fatherNamex, password, phone);
                                 FirebaseDatabase.getInstance().getReference("fatherUser").child(id+password).setValue(user);
 
                                 //txt.setText(student.getFullName());

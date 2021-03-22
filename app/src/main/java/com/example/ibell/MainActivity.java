@@ -31,8 +31,8 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-     Button login;
-     TextView noAccount, tst;
+    Button login;
+    TextView noAccount, tst;
     EditText ID, password;
     ProgressBar Rpro;
 
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private CancellationSignal cancellationSignal;
     private BiometricPrompt.AuthenticationCallback authenticationCallback;
 
-    
+
 
 
 
@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("توثيق بالبصمة")
                 .setSubtitle("الرجاء ادخال البصمة")
                 .setNegativeButton("Cancel", executor, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                            }
-                        }).build();
+                    }
+                }).build();
 
 
         login = (Button) findViewById(R.id.signin);
@@ -129,12 +129,12 @@ public class MainActivity extends AppCompatActivity {
                             String lastName = snapshot.child("students").child(ID.getText().toString()).child("last_name").getValue().toString();
                             String stdID = snapshot.child("students").child(ID.getText().toString()).child("student_id").getValue().toString();
                             String fatherID = snapshot.child("students").child(ID.getText().toString()).child("father_id").getValue().toString();
+                            String phone = snapshot.child("fatherUser").child(ID.getText().toString() + logpassword).child("phoneNumber").getValue().toString();
 
+                            sign_up.student = new Student(studentName, fatherName, grandName, lastName, stdID, fatherID, "الابتدائية الاولى");
+                            sign_up.user = new User(fatherID, fatherName, logpassword, phone);
 
-                                sign_up.student = new Student(studentName, fatherName, grandName, lastName, stdID, fatherID, "الابتدائية الاولى");
-
-
-                                //txt.setText(student.getFullName());
+                            //txt.setText(student.getFullName());
 
 
 
