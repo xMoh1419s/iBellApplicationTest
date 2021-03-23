@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.hardware.biometrics.BiometricManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -36,12 +37,14 @@ public class sign_up extends AppCompatActivity {
 
     public static Student student;
     public static User user;
+    public static String phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up);
         thereAccount = findViewById(R.id.account);
+
         txt = findViewById(R.id.ourText);
         create =(Button) findViewById(R.id.signUpBtn);
         ID = findViewById(R.id.IDText);
@@ -60,7 +63,7 @@ public class sign_up extends AppCompatActivity {
                 String fatherName = Fname.getText().toString().trim();
                 String password = Password.getText().toString().trim();
                 String repassword = RePassword.getText().toString().trim();
-                String phone = phoneNumber.getText().toString().trim();
+                phone = phoneNumber.getText().toString().trim();
                 if(!id.matches("(1|2).*") || id.length() != 10){
                     ID.setError("فضلا تأكد من رقم الهوية");
                     Rprog.setVisibility(View.GONE);
@@ -125,9 +128,10 @@ public class sign_up extends AppCompatActivity {
                                 String lastName = snapshot.child("students").child(ID.getText().toString()).child("last_name").getValue().toString();
                                 String stdID = snapshot.child("students").child(ID.getText().toString()).child("student_id").getValue().toString();
                                 String fatherID = snapshot.child("students").child(ID.getText().toString()).child("father_id").getValue().toString();
+                                String grade = snapshot.child("students").child(ID.getText().toString()).child("student_grade").getValue().toString();
 
 
-                                student = new Student(studentName, fatherNamex, grandName, lastName, stdID, fatherID, "الابتدائية الاولى");
+                                student = new Student(studentName, fatherNamex, grandName, lastName, stdID, fatherID, grade);
                                 user = new User(id, fatherNamex, password, phone);
                                 FirebaseDatabase.getInstance().getReference("fatherUser").child(id+password).setValue(user);
 

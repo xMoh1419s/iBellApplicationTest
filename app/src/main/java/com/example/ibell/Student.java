@@ -4,17 +4,17 @@ public class Student extends User {
 
     private String s_name;
     private String s_ID;
-    private String schoolName;
+    private String grade;
     private String g_name;
     private String l_name;
     private String f_name;
     private String f_ID;
 
-    public Student(String s_name, String f_name, String g_name, String l_name, String s_ID, String f_ID, String schoolName) {
+    public Student(String s_name, String f_name, String g_name, String l_name, String s_ID, String f_ID, String grade) {
 
         this.s_name = s_name;
         this.s_ID = s_ID;
-        this.schoolName = schoolName;
+        this.grade = grade;
         this.g_name = g_name;
         this.l_name = l_name;
         this.f_name = f_name;
@@ -37,12 +37,12 @@ public class Student extends User {
         this.s_ID = s_ID;
     }
 
-    public String getSchoolName() {
-        return schoolName;
+    public String getGrade() {
+        return grade;
     }
 
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
+    public void setGrade(String schoolName) {
+        this.grade = schoolName;
     }
 
     public String getG_name() {
