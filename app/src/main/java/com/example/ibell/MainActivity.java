@@ -75,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton("Cancel", executor, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        Intent intent = new Intent(MainActivity.this, smsCode.class);
+                        startActivity(intent);
                     }
                 }).build();
 
@@ -209,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
                             finish();
                         }
 
+                        
                         @Override
                         public void onAuthenticationFailed() {
                             super.onAuthenticationFailed();
