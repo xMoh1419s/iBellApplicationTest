@@ -11,7 +11,6 @@ public class Student extends User {
     private String f_ID;
 
     public Student(String s_name, String f_name, String g_name, String l_name, String s_ID, String f_ID, String grade) {
-
         this.s_name = s_name;
         this.s_ID = s_ID;
         this.grade = grade;

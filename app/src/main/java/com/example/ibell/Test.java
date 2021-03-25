@@ -20,7 +20,7 @@ import java.util.Locale;
 
 public class Test extends AppCompatActivity {
 
-    static final long INITIAL_TIME = 100000;
+    static final long INITIAL_TIME = 600000;
     long millis = INITIAL_TIME;
     Button timer, picked;
     CountDownTimer countdown;
@@ -36,13 +36,10 @@ public class Test extends AppCompatActivity {
         picked = findViewById(R.id.take);
         User.wsaltButton();
         startTimer();
-
         updateCountDownText();
-
         picked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //FirebaseDatabase.getInstance().getReference("Leaving_student").child("1010101010").removeValue();
                 childPickedUp();
             }
         });
@@ -79,8 +76,6 @@ public class Test extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 childPickedUp();
-
-
             }
         });
         moreTime.create().show();
@@ -97,10 +92,6 @@ public class Test extends AppCompatActivity {
         Intent intent = new Intent(Test.this, main_screen.class);
         startActivity(intent);
         Toast.makeText(Test.this, "شكرا لك على استخدام تطبيقنا, تم ازالة اسم ابنك من الشاشة." , Toast.LENGTH_LONG).show();
-
     }
-    //public void sms(View v){
-    //    PhoneAuthProvider.getInstance().verifyPhoneNumber();
-    //}
 }
 

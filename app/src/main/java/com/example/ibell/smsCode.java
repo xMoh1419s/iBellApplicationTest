@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ public class smsCode extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sms_code);
         enterCode = findViewById(R.id.smsField);
         phone = "+966504600667";
@@ -55,9 +57,7 @@ public class smsCode extends AppCompatActivity {
         public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
             verid = s;
-
         }
-
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
             String code = phoneAuthCredential.getSmsCode();
@@ -66,20 +66,17 @@ public class smsCode extends AppCompatActivity {
                 verifyCode(code);
             }
         }
-
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
             Toast.makeText(smsCode.this, "error1" + e.getMessage(), Toast.LENGTH_SHORT).show();
 
         }
     };
-
     private void verifyCode(String code) {
         PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(verid, code);
         signInWithPhoneAuthCredential(phoneAuthCredential);
 
     }
-
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithCredential(credential)

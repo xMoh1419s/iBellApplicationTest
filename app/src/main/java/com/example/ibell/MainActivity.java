@@ -45,21 +45,11 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar Rpro;
     String verid;
     String phone;
-
     DatabaseReference reff;
-
-
-
-    //private BiometricPrompt biometricPrompt;
     private CancellationSignal cancellationSignal;
     private BiometricPrompt.AuthenticationCallback authenticationCallback;
     FingerprintManager fingerprintManager;
     KeyguardManager keyguardManager;
-
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,31 +69,21 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }).build();
-
         fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
         keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
         login = (Button) findViewById(R.id.signin);
         noAccount = findViewById(R.id.noAccount);
         Rpro = findViewById(R.id.progBar);
-
         ID = findViewById(R.id.IDfeild);
         password = findViewById(R.id.passwordFiled);
-        //executor = ContextCompat.getMainExecutor(this);
-
 
         login.setOnClickListener(new View.OnClickListener() {
-
-
-
             @Override
             public void onClick(View v) {
-
                 login.setVisibility(View.INVISIBLE);
                 Rpro.setVisibility(View.VISIBLE);
-
                 String id = ID.getText().toString().trim();
                 String logpassword = password.getText().toString().trim();
-
                 if(!id.matches("(1|2).*") || id.length() != 10){
                     ID.setError("فضلا تأكد من رقم الهوية");
                     login.setVisibility(View.VISIBLE);
@@ -130,14 +110,10 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 reff = FirebaseDatabase.getInstance().getReference();//.child("students").child(ID.getText().toString().trim());
-
                 reff.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
                         try {
-
                             String fireword = snapshot.child("fatherUser").child(ID.getText().toString() + logpassword).child("password").getValue().toString();
                             String studentName = snapshot.child("students").child(ID.getText().toString()).child("student_name").getValue().toString();
                             String fatherName = snapshot.child("students").child(ID.getText().toString()).child("father_name").getValue().toString();
@@ -150,11 +126,6 @@ public class MainActivity extends AppCompatActivity {
 
                             sign_up.student = new Student(studentName, fatherName, grandName, lastName, stdID, fatherID, grade);
                             sign_up.user = new User(fatherID, fatherName, logpassword, phone);
-
-                            //txt.setText(student.getFullName());
-
-
-
                         }catch (NullPointerException e){
                             Toast.makeText(MainActivity.this, "فضلا تأكد من البيانات المدخلة" , Toast.LENGTH_SHORT).show();
                             login.setVisibility(View.VISIBLE);
@@ -164,16 +135,12 @@ public class MainActivity extends AppCompatActivity {
                             login.setVisibility(View.VISIBLE);
                             Rpro.setVisibility(View.INVISIBLE);
                         }
-
                     }
-
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
                 });
-
                 if(!fingerprintManager.isHardwareDetected()){
                     tst.setText("ما عندك حساب");
                     Intent intent = new Intent(MainActivity.this, smsCode.class);
@@ -187,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, smsCode.class);
                     startActivity(intent);
                 }else {
-
                     BP.authenticate(new CancellationSignal(), executor, new BiometricPrompt.AuthenticationCallback() {
                         @Override
                         public void onAuthenticationError(int errorCode, CharSequence errString) {
@@ -195,22 +161,18 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, smsCode.class);
                             startActivity(intent);
                         }
-
                         @Override
                         public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
                             super.onAuthenticationHelp(helpCode, helpString);
                             Intent intent = new Intent(MainActivity.this, smsCode.class);
                             startActivity(intent);
                         }
-
                         @Override
                         public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
                             Intent intent = new Intent(MainActivity.this, main_screen.class);
                             startActivity(intent);
                             finish();
                         }
-
-                        
                         @Override
                         public void onAuthenticationFailed() {
                             super.onAuthenticationFailed();
@@ -220,28 +182,12 @@ public class MainActivity extends AppCompatActivity {
                     });
                 }
             }
-
         });
-
-
-
-
-
-        /* login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(MainActivity.this,main_screen.class);
-                startActivity(intent);
-
-            }
-        }); */
-
         noAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(MainActivity.this,sign_up.class);
                 startActivity(intent);
-
             }
         });
     }

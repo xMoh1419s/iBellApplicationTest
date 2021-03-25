@@ -2,19 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home"
-        android:title="صفحة وصلت"
-        android:icon="@drawable/ic_home"/>
-
-    <item
-        android:id="@+id/account"
-        android:title="تفاصيل الحساب"
-        android:icon="@drawable/ic_account"/>
-
+        android:id="@+id/logout"
+        android:title="تسجيل الخروج"
+        android:icon="@drawable/ic_logout"/>
     <item
         android:id="@+id/about"
         android:title="عن المطورين"
         android:icon="@drawable/ic_info"/>
+    <item
+        android:id="@+id/account"
+        android:title="تفاصيل الحساب"
+        android:icon="@drawable/ic_account"/>
+    <item
+        android:id="@+id/home"
+        android:title="صفحة وصلت"
+        android:icon="@drawable/ic_home"/>
 
 
 </menu>

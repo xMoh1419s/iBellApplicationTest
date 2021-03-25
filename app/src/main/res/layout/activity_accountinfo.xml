@@ -138,6 +138,7 @@
         android:id="@+id/BottomNavMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:labelVisibilityMode="labeled"
         android:layout_alignParentBottom="true"
         android:layout_margin="0dp"
         android:background="@drawable/bottomnav_bg"

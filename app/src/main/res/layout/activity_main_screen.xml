@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbarThumbHorizontal="@drawable/background"
     tools:context=".main_screen">
 
     <ImageView
@@ -78,6 +79,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/BottomNavMenu"
         android:layout_width="match_parent"
+        app:labelVisibilityMode="labeled"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="0dp"
@@ -96,4 +98,5 @@
             android:layout_above="@id/BottomNavMenu"
             android:background="@drawable/shadow" />
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
