@@ -1,18 +1,17 @@
 package com.example.ibell;
 
 public class Parents extends User{
-
-
-
-    public void chooseStudent(){
-
-    }
+    private int numberOfChildren;
 
     public void givePermission(String ID){
 
     }
 
+    public int getNumberOfChildren() {
+        return numberOfChildren;
+    }
 
-
-
+    public void setNumberOfChildren(int numberOfChildren) {
+        this.numberOfChildren = numberOfChildren;
+    }
 }

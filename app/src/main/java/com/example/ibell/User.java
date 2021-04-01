@@ -6,10 +6,9 @@ public class User {
 
     private String ID;
     private String Fname;
-    private String Lname; //
     private String password;
     private String phoneNumber;
-    private Student[] student; //
+
 
     public User(){
 
@@ -20,6 +19,9 @@ public class User {
         this.Fname = Fname;
         this.password = password;
         this.phoneNumber = phoneNumber;
+    }
+    public User(String ID) {
+        this.ID = ID;
     }
 
     public String getID() {
@@ -38,14 +40,6 @@ public class User {
         this.Fname = Fname;
     }
 
-    public String getLname() {
-        return Lname;
-    }
-
-    public void setLname(String Lname) {
-        this.Lname = Lname;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -62,28 +56,27 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Student[] getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student[] student) {
-        this.student = student;
-    }
-
-    public boolean Login(String id, String pass){
-        return false;
-
-    }
-
     public static void wsaltButton(){
-
         FirebaseDatabase.getInstance().getReference("Leaving_student").child(sign_up.student.getS_ID()).setValue(sign_up.student);
-
-
     }
     public static String phoneNum(){
-
         return sign_up.user.getPhoneNumber();
+    }
+
+    public boolean checkPhoneNumber(String phoneNumber){
+        if(phoneNumber.length() == 10 || phoneNumber.startsWith("05")){
+            return true;
+        }
+        return false;
+    }
+    public boolean checkID(String id){
+        if(id.matches("(1|2).*") || id.length() == 10){
+            return true;
+        }
+        return false;
+    }
+    public String signupSuccess(){
+        return "تم تفعيل الحساب  بنجاح";
     }
 
 

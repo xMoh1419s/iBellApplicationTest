@@ -1,10 +1,6 @@
 package com.example.ibell;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.hardware.biometrics.BiometricManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,17 +9,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+
 
 public class sign_up extends AppCompatActivity {
 
@@ -132,13 +128,14 @@ public class sign_up extends AppCompatActivity {
 
                                 Intent intent = new Intent(sign_up.this, main_screen.class);
                                 startActivity(intent);
+                                txt.setText(user.signupSuccess());
                                 finish();
                             }catch (NullPointerException e){
                                 ID.setError("فضلا تأكد من ان رقم الهوية مسجل لدى المدرسة");
                                 Rprog.setVisibility(View.GONE);
                                 create.setVisibility(View.VISIBLE);
                             }catch (Exception e){
-                                ID.setError("غلط");
+                                ID.setError("الرجاء المحاولة مرة اخرى");
                                 Rprog.setVisibility(View.GONE);
                                 create.setVisibility(View.VISIBLE);
                             }
@@ -155,7 +152,6 @@ public class sign_up extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent= new Intent(sign_up.this, MainActivity.class);
                 startActivity(intent);
-
             }
         });
     }
