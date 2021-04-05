@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Locale;
 
-public class Test extends AppCompatActivity {
+public class CountDown extends AppCompatActivity {
 
     static final long INITIAL_TIME = 600000;
     long millis = INITIAL_TIME;
@@ -29,8 +29,8 @@ public class Test extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_test);
-        Toast.makeText(Test.this, "اسم ابنك ظاهر على الشاشة, تقدر تروح تاخذه." , Toast.LENGTH_SHORT).show();
+        setContentView(R.layout.activity_countdown);
+        Toast.makeText(CountDown.this, "اسم ابنك ظاهر على الشاشة, تقدر تروح تاخذه." , Toast.LENGTH_SHORT).show();
         timer = findViewById(R.id.btnn);
         picked = findViewById(R.id.take);
         User.wsaltButton();
@@ -59,7 +59,7 @@ public class Test extends AppCompatActivity {
         stillTime = true;
     }
     private void resetTimer() {
-        AlertDialog.Builder moreTime = new AlertDialog.Builder(Test.this);
+        AlertDialog.Builder moreTime = new AlertDialog.Builder(CountDown.this);
         moreTime.setTitle("أنتهى الوقت!");
         moreTime.setMessage("تحتاج وقت زيادة؟");
         moreTime.setPositiveButton("ايه, باقي ما اخذت ابني.", new DialogInterface.OnClickListener() {
@@ -68,7 +68,7 @@ public class Test extends AppCompatActivity {
                 millis = INITIAL_TIME;
                 updateCountDownText();
                 startTimer();
-                Toast.makeText(Test.this, "تم تمديد الوقت, اسم ابنك لايزال على الشاشة." , Toast.LENGTH_SHORT).show();
+                Toast.makeText(CountDown.this, "تم تمديد الوقت, اسم ابنك لايزال على الشاشة." , Toast.LENGTH_SHORT).show();
             }
         });
         moreTime.setNegativeButton("لا, خلاص اخذته.", new DialogInterface.OnClickListener() {
@@ -88,9 +88,9 @@ public class Test extends AppCompatActivity {
     public void childPickedUp(){
         DatabaseReference reff = FirebaseDatabase.getInstance().getReference("Leaving_student").child(sign_up.student.getS_ID());
         reff.removeValue();
-        Intent intent = new Intent(Test.this, main_screen.class);
+        Intent intent = new Intent(CountDown.this, main_screen.class);
         startActivity(intent);
-        Toast.makeText(Test.this, "شكرا لك على استخدام تطبيقنا, تم ازالة اسم ابنك من الشاشة." , Toast.LENGTH_LONG).show();
+        Toast.makeText(CountDown.this, "شكرا لك على استخدام تطبيقنا, تم ازالة اسم ابنك من الشاشة." , Toast.LENGTH_LONG).show();
     }
 }
 

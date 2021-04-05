@@ -8,7 +8,6 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +20,6 @@ import java.util.List;
 public class main_screen extends AppCompatActivity {
 
     public Button btn;
-    public TextView tst;
     Spinner names;
 
     @Override
@@ -33,26 +31,23 @@ public class main_screen extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.BottomNavMenu);
         bottomNavigationView.setOnNavigationItemSelectedListener(nav);
 
-        tst = findViewById(R.id.Test);
         btn = findViewById(R.id.wasalt);
         names = findViewById(R.id.spinnerNames);
 
         List<String> namesList = new ArrayList<>();
-        if(sign_up.student.getFullName() == null){
 
-        }else {
-            namesList.add(sign_up.student.getFullName());
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, namesList);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            names.setAdapter(adapter);
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(main_screen.this, Test.class);
-                    startActivity(intent);
-                }
-            });
-        }
+        namesList.add(sign_up.student.getFullName());
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, namesList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        names.setAdapter(adapter);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(main_screen.this, CountDown.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
     BottomNavigationView.OnNavigationItemSelectedListener nav = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

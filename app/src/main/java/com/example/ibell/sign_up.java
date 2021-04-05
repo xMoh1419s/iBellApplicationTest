@@ -23,15 +23,15 @@ import com.google.firebase.database.ValueEventListener;
 
 public class sign_up extends AppCompatActivity {
 
+    public static Student student;
+    public static User user;
+    public static String phone;
     TextView thereAccount,txt;
     Button create;
     EditText ID, Fname, Password, RePassword, phoneNumber;
     DatabaseReference reff;
-    FirebaseDatabase fire;
     ProgressBar Rprog;
-    public static Student student;
-    public static User user;
-    public static String phone;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +109,7 @@ public class sign_up extends AppCompatActivity {
                     create.setVisibility(View.VISIBLE);
                     return;
                 }
-                    reff = FirebaseDatabase.getInstance().getReference();//.child("students").child(ID.getText().toString().trim());
+                    reff = FirebaseDatabase.getInstance().getReference();
                     reff.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {

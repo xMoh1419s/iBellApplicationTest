@@ -1,17 +1,10 @@
 package com.example.ibell;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.biometric.BiometricManager;
-import androidx.core.content.ContextCompat;
-
 import android.app.KeyguardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.biometrics.BiometricPrompt;
 import android.hardware.fingerprint.FingerprintManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.text.TextUtils;
@@ -23,10 +16,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.TaskExecutors;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,11 +34,8 @@ public class MainActivity extends AppCompatActivity {
     TextView noAccount, tst;
     EditText ID, password;
     ProgressBar Rpro;
-    String verid;
     String phone;
     DatabaseReference reff;
-    private CancellationSignal cancellationSignal;
-    private BiometricPrompt.AuthenticationCallback authenticationCallback;
     FingerprintManager fingerprintManager;
     KeyguardManager keyguardManager;
 
@@ -131,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                             login.setVisibility(View.VISIBLE);
                             Rpro.setVisibility(View.INVISIBLE);
                         }catch (Exception e){
-                            ID.setError("غلط");
+                            ID.setError("الرجاء المحاولة مرة اخرى");
                             login.setVisibility(View.VISIBLE);
                             Rpro.setVisibility(View.INVISIBLE);
                         }
@@ -142,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 if(!fingerprintManager.isHardwareDetected()){
-                    tst.setText("ما عندك حساب");
+                    tst.setText("ما عندك حساس بصمة");
                     Intent intent = new Intent(MainActivity.this, smsCode.class);
                     startActivity(intent);
                 }else if (!keyguardManager.isKeyguardSecure()){
