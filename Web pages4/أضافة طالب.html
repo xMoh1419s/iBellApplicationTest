@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>أضافة طالب</title>
+</head>
+  <style>
+    .content {
+  max-width: 604px;
+  margin: auto;
+  background: white;
+  padding: 50px;
+}
+    input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  font-size: 20px;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: #FFFFFF #FFFFFF #5BCEC9 #FFFFFF;
+}
+
+  </style>
+<body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDncONyfV5nNrmbo7e2pFSD9F29BZc9TCY",
+    authDomain: "ibell-3558e.firebaseapp.com",
+    databaseURL: "https://ibell-3558e-default-rtdb.firebaseio.com",
+    projectId: "ibell-3558e",
+    storageBucket: "ibell-3558e.appspot.com",
+    messagingSenderId: "904637172225",
+    appId: "1:904637172225:web:73ebbb72216a1b91dc4e00",
+    measurementId: "G-YWBJVZXQ1D"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  function writeData(){
+   var studentName = document.getElementById("fname").value;
+   var fathertName = document.getElementById("fathname").value;
+   var grandName = document.getElementById("grandfath").value;
+   var lastName = document.getElementById("lname").value;
+   var studentId = document.getElementById("idnum").value;
+   var fatherId = document.getElementById("fatherid").value;
+   var studentGrade = document.getElementById("grade").value;
+   var arabic = /^[\u0600-\u06FF]+$/;
+   var num = /^\d+$/;
+    
+   if(studentName == null || studentName == ""){
+     alert("لابد من ادخال اسم الطالب");
+     return;
+   }
+   if(!studentName.match(arabic)){
+     alert("المسموح فقط حروف عربية (بدون مسافة) في خانة اسم الطالب");
+     document.getElementById("fname").value = "";
+     return;
+   }
+   if(fathertName == null || fathertName == ""){
+     alert("لابد من ادخال اسم الاب");
+     return;
+   }
+   if(!fathertName.match(arabic)){
+     alert("المسموح فقط حروف عربية (بدون مسافة) في خانة اسم الاب");
+     document.getElementById("fathname").value = "";
+     return;
+   }
+   if(grandName == null || grandName == ""){
+     alert("لابد من ادخال اسم الجد");
+     return;
+   }
+   if(!grandName.match(arabic)){
+     alert("المسموح فقط حروف عربية (بدون مسافة) في خانة اسم الجد");
+     document.getElementById("grandfath").value = "";
+     return;
+   }
+   if(lastName == null || lastName == ""){
+     alert("لابد من ادخال اللقب");
+     return;
+   }
+   if(!lastName.match(arabic)){
+     alert("المسموح فقط حروف عربية (بدون مسافة) في خانة اللقب");
+     document.getElementById("lname").value = "";
+     return;
+   }
+   if(studentId == null || studentId == ""){
+     alert("لابد من ادخال رقم هوية الطالب");
+     return;
+   }
+   if(!studentId.match(num)){
+     alert("المسموح فقط ارقام في خانة رقم هوية الطالب");
+     document.getElementById("idnum").value = "";
+     return;
+   }
+   if(!studentId.startsWith("1") && !studentId.startsWith("2") || studentId.length != 10){
+     alert("فضلا تحقق من رقم هوية الطالب");
+     document.getElementById("idnum").value = "";
+     return;
+   }
+   if(fatherId == null || fatherId == ""){
+     alert("لابد من ادخال رقم هوية الاب");
+     return;
+   }
+   if(!fatherId.match(num)){
+     alert("المسموح فقط ارقام في خانة رقم هوية الاب");
+     document.getElementById("fatherid").value = "";
+     return;
+   }
+   if(!fatherId.startsWith("1") && !fatherId.startsWith("2") || fatherId.length != 10){
+     alert("فضلا تحقق من رقم هوية الاب");
+     document.getElementById("fatherid").value = "";
+     return;
+   }
+
+     firebase.database().ref('/students/' + document.getElementById("fatherid").value).set({
+        student_name: studentName,
+        father_name: fathertName,
+        grandfather_name: grandName,
+        last_name: lastName,
+        student_id: studentId,
+        student_grade: studentGrade,
+        father_id: fatherId 
+     });
+    
+     alert("تم اضافة الطالب بنجاح");
+     document.getElementById("fname").value = "";
+     document.getElementById("fathname").value = "";
+     document.getElementById("grandfath").value = "";
+     document.getElementById("lname").value = "";
+     document.getElementById("idnum").value = "";
+     document.getElementById("fatherid").value = "";
+     document.getElementById("grade").value = "";
+    
+   }
+  function refrsh(){
+  window.location.reload();
+}
+</script>
+  <div class="content">
+  <input type="image" src="pictures\Group 24.png" alt="info" width="200" height="200"style="vertical-align:middle;margin:20px 205px"><br/>
+
+  <input type="text" id="fname" placeholder="الاسم الأول" style="text-align:center;">
+  <input type="text" id="fathname" placeholder="اسم الأب" style="text-align:center;">
+  <input type="text" id="grandfath" placeholder="اسم الجد" style="text-align:center;">
+  <input type="text" id="lname" placeholder="الاسم الأخير" style="text-align:center;">
+  <input type="text" id="grade" placeholder="الصف الدراسي" style="text-align:center;">
+  <input type="text" id="idnum" placeholder="رقم هوية الطالب" style="text-align:center;">
+  <input type="text" id="fatherid" name="fname"placeholder="رقم هوية ولي الأمر" style="text-align:center;">
+  <input type="image" src="pictures\Group 25.png" onclick = "writeData()" alt="delete student" width="300" height="70" style="vertical-align:middle;margin:50px 150px">
+
+  
+  </div>
+  
+
+<!-- End your code here -->
+</body>
+</html>
