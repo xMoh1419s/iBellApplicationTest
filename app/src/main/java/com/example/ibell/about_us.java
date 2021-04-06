@@ -1,17 +1,12 @@
 package com.example.ibell;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -33,14 +28,17 @@ public class about_us extends AppCompatActivity{
                 case R.id.about:
                     Intent intent = new Intent(about_us.this, about_us.class);
                     startActivity(intent);
+                    finish();
                     break;
                 case R.id.home:
                     Intent intent2 = new Intent(about_us.this, main_screen.class);
                     startActivity(intent2);
+                    finish();
                     break;
                 case R.id.account:
                     Intent intent3 = new Intent(about_us.this, accountinfo.class);
                     startActivity(intent3);
+                    finish();
                     break;
                 case R.id.logout:
                     sign_up.student = null;

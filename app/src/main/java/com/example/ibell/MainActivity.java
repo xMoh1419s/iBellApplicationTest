@@ -133,14 +133,17 @@ public class MainActivity extends AppCompatActivity {
                     tst.setText("ما عندك حساس بصمة");
                     Intent intent = new Intent(MainActivity.this, smsCode.class);
                     startActivity(intent);
+                    finish();
                 }else if (!keyguardManager.isKeyguardSecure()){
                     tst.setText("فعل البصمة");
                     Intent intent = new Intent(MainActivity.this, smsCode.class);
                     startActivity(intent);
+                    finish();
                 }else if (!fingerprintManager.hasEnrolledFingerprints()){
                     tst.setText("ما عندك بصمة مسجلة");
                     Intent intent = new Intent(MainActivity.this, smsCode.class);
                     startActivity(intent);
+                    finish();
                 }else {
                     BP.authenticate(new CancellationSignal(), executor, new BiometricPrompt.AuthenticationCallback() {
                         @Override
@@ -148,24 +151,39 @@ public class MainActivity extends AppCompatActivity {
                             super.onAuthenticationError(errorCode, errString);
                             Intent intent = new Intent(MainActivity.this, smsCode.class);
                             startActivity(intent);
+                            finish();
                         }
                         @Override
                         public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
                             super.onAuthenticationHelp(helpCode, helpString);
                             Intent intent = new Intent(MainActivity.this, smsCode.class);
                             startActivity(intent);
+                            finish();
                         }
                         @Override
-                        public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
-                            Intent intent = new Intent(MainActivity.this, main_screen.class);
-                            startActivity(intent);
-                            finish();
+
+                            public void onAuthenticationSucceeded (BiometricPrompt.AuthenticationResult result) {
+                            try {
+                                if (sign_up.student.getFullName() == null) {
+                                    Intent thisActivity = new Intent(MainActivity.this, MainActivity.class);
+                                    startActivity(thisActivity);
+                                } else {
+                                    Intent intent = new Intent(MainActivity.this, main_screen.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }catch(NullPointerException ex){
+
+                            }catch(Exception ex){
+
+                            }
                         }
                         @Override
                         public void onAuthenticationFailed() {
                             super.onAuthenticationFailed();
                             Intent intent = new Intent(MainActivity.this, smsCode.class);
                             startActivity(intent);
+                            finish();
                         }
                     });
                 }
