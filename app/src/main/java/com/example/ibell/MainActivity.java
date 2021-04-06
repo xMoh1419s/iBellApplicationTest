@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 if(logpassword.length() <= 8) {
-                    password.setError("لابد ان تكون كلمة المرور اكثر من او تساوي 8 خانات");
+                    password.setError("لابد ان تكون كلمة المرور اكثر من او تساوي 9 خانات");
                     login.setVisibility(View.VISIBLE);
                     Rpro.setVisibility(View.INVISIBLE);
                     return;

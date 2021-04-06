@@ -92,7 +92,7 @@ public class sign_up extends AppCompatActivity {
                     return;
                 }
                 if(password.length() <= 8) {
-                    Password.setError("لابد ان تكون كلمة المرور اكثر من او تساوي 8 خانات");
+                    Password.setError("لابد ان تكون كلمة المرور اكثر من او تساوي 9 خانات");
                     Rprog.setVisibility(View.GONE);
                     create.setVisibility(View.VISIBLE);
                     return;

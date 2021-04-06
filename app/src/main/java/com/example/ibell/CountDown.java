@@ -19,7 +19,7 @@ import java.util.Locale;
 
 public class CountDown extends AppCompatActivity {
 
-    static final long INITIAL_TIME = 600000;
+    static final long INITIAL_TIME = 5000;
     long millis = INITIAL_TIME;
     Button timer, picked;
     CountDownTimer countdown;
